@@ -1,5 +1,0 @@
-Response 1: What is the normal blood pressure range, and what is considered high blood pressure?
-Response 2: What are the possible symptoms of a brain tumor, and what kind of medical tests and examinations do I need to diagnose it?
-Response 3: What should I do if I experience symptoms of uterine cancer?
-Response 4: What is the best treatment for the white spots and discoloration caused by using Melanie cream?
-Response 5: What is causing my discomfort and what tests do you recommend?
