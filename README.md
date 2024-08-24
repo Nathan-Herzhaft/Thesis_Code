@@ -17,12 +17,6 @@ This is the GitHub repository that contains the code written during my master's 
 
 The goal of this project is to explore domain adaptation techniques for embedding models, with a focus on generating synthetic data to improve model fine-tuning. This repository contains all the scripts and code necessary to replicate the experiments conducted during the master's thesis.
 
-## Directory Structure
-
-The repository is organized as follows:
-
-/Thesis_Code │ ├── Chapter-3/ │ ├── covid_find_examples.py │ ├── covid_v2.py │ ├── french_trivia.py │ ├── medical_question.py │ └── ms_marco.py │ ├── Chapter-4/ │ ├── Evaluation/ │ └── Training/ │ ├── Chapter-5/ │ ├── data-generation.py │ ├── evaluation.py │ └── Training/ │ ├── Results/ │ ├── synthetic-queries/ │ ├── examples-chapter3/ │ └── Plots/ │ ├── plot_graphs.ipynb ├── requirements.txt ├── README.md └── pycache/
-
 
 ## Experiments
 
