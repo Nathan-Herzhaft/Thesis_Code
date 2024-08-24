@@ -78,14 +78,15 @@ def pipeline(dataset,e5_model) :
         # Save the examples in sepqrqte txt files
         if pred_e5 != 0 :
             if pred_bm25 != 0 :
-                with open('e5_vs_bm25/examples/both_fail.txt', 'a+') as file:
+                
+                with open('./Results/examples-chapter3/both_fail.txt', 'a+') as file:
                     file.write(query + '\n')
                     file.write('true passage : ' + passages[0][9:] + '\n')
                     file.write('e5 retrieved passage : ' + passages[pred_e5][9:] + '\n')
                     file.write('bm25 retrieved passage : ' + passages[pred_bm25][9:] + '\n\n\n')
                     file.close()
             if pred_bm25 == 0 :
-                with open('e5_vs_bm25/examples/e5_fails.txt', 'a+') as file:
+                with open('./Results/examples-chapter3/e5_fails.txt', 'a+') as file:
                     file.write(query + '\n')
                     file.write('true passage : ' + passages[0][9:] + '\n')
                     file.write('e5 retrieved passage : ' + passages[pred_e5][9:] + '\n')
@@ -94,14 +95,14 @@ def pipeline(dataset,e5_model) :
 
         if pred_e5 == 0 :
             if pred_bm25 != 0 :
-                with open('e5_vs_bm25/examples/e5_succeeds.txt', 'a+') as file:
+                with open('./Results/examples-chapter3/e5_succeeds.txt', 'a+') as file:
                     file.write(query + '\n')
                     file.write('true passage : ' + passages[0][9:] + '\n')
                     file.write('e5 retrieved passage : ' + passages[pred_e5][9:] + '\n')
                     file.write('bm25 retrieved passage : ' + passages[pred_bm25][9:] + '\n\n\n')
                     file.close()
             if pred_bm25 == 0 :
-                with open('e5_vs_bm25/examples/both_succeed.txt', 'a+') as file:
+                with open('./Results/examples-chapter3/both_succeed.txt', 'a+') as file:
                     file.write(query + '\n')
                     file.write('true passage : ' + passages[0][9:] + '\n')
                     file.write('e5 retrieved passage : ' + passages[pred_e5][9:] + '\n')
