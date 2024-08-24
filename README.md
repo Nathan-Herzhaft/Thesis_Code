@@ -5,13 +5,12 @@ This is the GitHub repository that contains the code written during my master's 
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Directory Structure](#directory-structure)
-3. [Experiments](#experiments)
+2. [Experiments](#experiments)
    - [Chapter 3](#chapter-3)
    - [Chapter 4](#chapter-4)
    - [Chapter 5](#chapter-5)
-4. [Results](#results)
-5. [Dependencies](#dependencies)
+3. [Results](#results)
+4. [Dependencies](#dependencies)
 
 ## Introduction
 
@@ -48,12 +47,6 @@ The goal of this project is to explore domain adaptation techniques for embeddin
   - `synthetic-queries/`: Stores synthetic query results from Chapter 5
   - `examples-chapter3/`: Contains examples related to Chapter 3 experiments.
   - `Plots/`: Directory for different plots generated from the data.
-
-## plot_graphs.ipynb
-
-- This Jupyter notebook is used to plot the graphs that are included in the thesis report.
-- It takes data from the results of experiments and generates visual representations to illustrate findings and conclusions.
-- The notebook is separate from the main experiment scripts and is dedicated to visualization purposes.
 
 ## Dependencies
 
