@@ -1,4 +1,4 @@
-# Project Title
+# Domain Adaptation of Embedding Models
 
 This is the GitHub repository that contains the code written during my master's thesis at UCL, in partnership with the company Accelex. The subject of the thesis focuses on domain adaptation of embedding models, particularly on the generation of synthetic data used for fine-tuning.
 
