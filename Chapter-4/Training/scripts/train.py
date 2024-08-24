@@ -4,8 +4,10 @@ import datasets
 import random
 from sentence_transformers.training_args import BatchSamplers
 
+# Load model
 model = SentenceTransformer("intfloat/e5-small-v2")
 
+# Load dataset and shape the data
 raw_dataset = datasets.load_dataset("minh21/COVID-QA-sentence-transformer",split="train")
 
 train_samples = [i for i in range(int(len(raw_dataset)))]
@@ -23,6 +25,7 @@ train_dataset = small_dataset.map(add_prefixes)
 
 loss = losses.MultipleNegativesRankingLoss(model)
 
+# Define training args
 training_args = SentenceTransformerTrainingArguments(
     output_dir="s3://sagemaker-us-west-2-536930143272/acx-embeddings/",  # output directory for sagemaker to upload to s3
     num_train_epochs=3,  # number of epochs
@@ -42,6 +45,6 @@ trainer = SentenceTransformerTrainer(
     loss=loss,
 )
 
-
+# Train and save the model
 trainer.train()
 trainer.save_model(output_dir = '/opt/ml/model')

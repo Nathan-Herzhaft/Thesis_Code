@@ -5,7 +5,7 @@ from sagemaker import Session
 from sagemaker.huggingface import HuggingFaceModel, get_huggingface_llm_image_uri
  
 
-
+# Start a Sagemaker session
 boto_session = boto3.Session(profile_name="Nathan")
 iam = boto_session.client("iam")
 role = iam.get_role(RoleName="SageMakerDev1")["Role"]["Arn"]

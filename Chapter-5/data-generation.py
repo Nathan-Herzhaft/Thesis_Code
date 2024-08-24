@@ -11,7 +11,7 @@ boto_session = boto3.Session(profile_name="Nathan")
 client = boto_session.client("bedrock-runtime", region_name="us-west-2")
 
 # Set the model ID, e.g., Claude 3 Haiku.
-model_id = "anthropic.claude-3-haiku-20240307-v1:0"
+model_id = "anthropic.claude-3-5-sonnet-20240620-v1:0"
 
 # Load the passages from the dataset, to generate synthetic queries
 dataset = datasets.load_dataset("Malikeh1375/medical-question-answering-datasets", 'all-processed',split="train",trust_remote_code=True)
@@ -33,7 +33,7 @@ def invoke_model(prompt, model_id):
     native_request = {
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 1024,
-        "temperature": 0.9,
+        "temperature": 0.5,
         "messages": [
             {
                 "role": "user",
@@ -70,7 +70,7 @@ for i in range(n_passages):
     if response_text and (i+1) % n_batch == 0 :
         print(f"Request {i + 1}")
         # Optionally, save responses to a file
-        with open("Results/queries_hightemp.txt", "a+") as f:
+        with open("Results/queries_sonnet.txt", "a+") as f:
                 for response in last_responses :
                     f.write(f"{response}\n")
         end = time.time()

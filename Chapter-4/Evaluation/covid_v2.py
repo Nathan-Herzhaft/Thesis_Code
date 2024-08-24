@@ -14,7 +14,7 @@ import pandas as pd
 import time
 import os
 
-model = SentenceTransformer('./Finetuned_Models/covid_v2-3_epoch-model')
+model = SentenceTransformer('./Finetuned_Models/covid_v2-3_epoch-model') # Load the finetuned model. Change to your personal directory
 
 # %%
 raw_dataset = datasets.load_dataset("minh21/COVID-QA-sentence-transformer", split="test",trust_remote_code=True)

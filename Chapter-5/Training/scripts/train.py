@@ -5,8 +5,10 @@ import random
 from sentence_transformers.training_args import BatchSamplers
 from datasets import concatenate_datasets
 
+# Load the synthetic queries
 synthetic_queries = load_dataset('text', data_files='queries.txt')['train']
 
+# Load the data from huggingface, and shape it
 raw_passages = datasets.load_dataset("Malikeh1375/medical-question-answering-datasets", 'all-processed',split="train",trust_remote_code=True).select_columns(['output']).select([i for i in range(50000)])
 
 full_data = concatenate_datasets([synthetic_queries,raw_passages],axis=1)
@@ -24,6 +26,7 @@ train_dataset = full_data.map(add_prefixes)
 
 loss = losses.MultipleNegativesRankingLoss(model)
 
+# Define training arguments
 training_args = SentenceTransformerTrainingArguments(
     output_dir="s3://sagemaker-us-west-2-536930143272/acx-embeddings/",  # output directory for sagemaker to upload to s3
     num_train_epochs=1,  # number of epochs
@@ -43,6 +46,6 @@ trainer = SentenceTransformerTrainer(
     loss=loss,
 )
 
-
+# Train and save the model
 trainer.train()
 trainer.save_model(output_dir = '/opt/ml/model')

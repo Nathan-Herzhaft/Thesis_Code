@@ -14,7 +14,7 @@ import pandas as pd
 import time
 import os
 
-model = SentenceTransformer('./Finetuned_Models/synthetic-medical-questions-1-epoch')
+model = SentenceTransformer('./Finetuned_Models/synthetic-medical-questions-1-epoch') # Load finetuned model from your personal directory
 
 # %%
 raw_dataset = datasets.load_dataset("Malikeh1375/medical-question-answering-datasets", 'all-processed',split="train",trust_remote_code=True)

@@ -19,6 +19,7 @@ import os
 e5 = SentenceTransformer('intfloat/e5-small-v2')
 
 # %%
+# Load dataset and shape it correctly
 raw_dataset = datasets.load_dataset("minh21/COVID-QA-question-answering-biencoder-data-75_25", split="train",trust_remote_code=True)
 data_truncated = pd.DataFrame(raw_dataset).sample(100).reset_index(drop=True)
 queries = pd.Series(data_truncated['question']).apply(lambda x : 'query: ' + x)
@@ -27,6 +28,7 @@ passages = pd.Series(data_truncated['context_chunks']).apply(lambda x: 'passage:
 
 
 # %%
+# Custom class for datasets, that allows to select random negative samples with each inputs
 class CustomDataset(Dataset):
     def __init__(self,queries,passages,n_samples):
         self.queries = queries
@@ -44,6 +46,7 @@ data = CustomDataset(queries,passages,5)
 
 # %%
 def pipeline(dataset,e5_model) :
+# The full experiment pipeline
     
     print(f'Number of iterations : {len(dataset)}')
     print('\n\n')
@@ -57,13 +60,14 @@ def pipeline(dataset,e5_model) :
         
         query, passages = dataset[i]
         
+        # Predict with e5
         emb_query = e5_model.encode(query)
         emb_passages = e5_model.encode(passages)
         scores_e5 = emb_query @ emb_passages.T
         pred_e5 = scores_e5.argmax()
         good_preds_e5 += (pred_e5 == 0)
 
-        
+        # Predict with bm25
         tokenized_corpus = [doc.split(" ") for doc in passages]
         bm25 = BM25Okapi(tokenized_corpus)
         tokenized_query = query.split(" ")
@@ -71,7 +75,7 @@ def pipeline(dataset,e5_model) :
         pred_bm25 = scores_bm25.argmax()
         good_preds_bm25 += (pred_bm25 == 0)
 
-
+        # Save the examples in sepqrqte txt files
         if pred_e5 != 0 :
             if pred_bm25 != 0 :
                 with open('e5_vs_bm25/examples/both_fail.txt', 'a+') as file:
